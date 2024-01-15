@@ -1,0 +1,26 @@
+def separate_and_convert(string):
+    
+    number_string = ''.join(c for c in string if c.isdigit())
+    letter_string = ''.join(c for c in string if c.isalpha()) 
+
+    # even numbers in the number string to ASCII 
+    even_numbers = [int(num) for num in number_string if int(num) % 2 == 0]
+    even_numbers_ascii = [ord(chr(num)) for num in even_numbers]
+
+    # upper-case letters to ASCII 
+    upper_case_letters = [char for char in letter_string if char.isupper()]
+    upper_case_letters_ascii = [ord(char) for char in upper_case_letters]
+
+    return number_string, letter_string, even_numbers, even_numbers_ascii, upper_case_letters, upper_case_letters_ascii
+
+
+input_string = input("enter the string: ")
+number_str, letter_str, even_nums, even_nums_ascii, upper_case_letters, upper_case_letters_ascii = separate_and_convert(input_string)
+
+# Output
+print(f"Number String: {number_str}")
+print(f"Letter String: {letter_str}")
+print(f"Even Numbers: {even_nums}")
+print(f"Even Numbers ASCII Code Decimal Values: {even_nums_ascii}")
+print(f"Upper-case Letters: {upper_case_letters}")
+print(f"Upper-case Letters ASCII Code Decimal Values: {upper_case_letters_ascii}")
