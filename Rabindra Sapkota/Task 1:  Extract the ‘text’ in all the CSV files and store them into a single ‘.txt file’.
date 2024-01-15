@@ -1,0 +1,36 @@
+import os
+import pandas as pd
+
+# Specify the directory where your CSV files are located
+csv_directory = 'C:/Users/rabindra/Desktop/csvf'
+
+# Specify the output directory
+output_directory = 'C:/Users/rabindra/Desktop/csvf'
+
+# Create the output directory if it doesn't exist
+os.makedirs(output_directory, exist_ok=True)
+
+# Specify the output text file within the output directory
+output_text_file = os.path.join(output_directory, 'output.txt')
+
+# Function to extract text from all columns in CSV files
+def extract_text_from_csv(csv_file):
+    df = pd.read_csv(csv_file)
+    all_columns = df.columns
+    all_data = df.astype(str)
+    return '\n'.join(['\t'.join(row) for row in all_data.values])
+
+# List all CSV files in the directory
+csv_files = [file for file in os.listdir(csv_directory) if file.endswith('.csv')]
+
+# Open the output text file in append mode
+with open(output_text_file, 'a', encoding='utf-8') as output_file:
+    # Loop through each CSV file and extract text
+    for csv_file in csv_files:
+        csv_path = os.path.join(csv_directory, csv_file)
+        text_from_csv = extract_text_from_csv(csv_path)
+        
+        # Write the extracted text to the output text file
+        output_file.write(f"=== {csv_file} ===\n{text_from_csv}\n\n")
+
+print(f"Text extracted from all columns in all CSV files and stored in '{output_text_file}'.")
