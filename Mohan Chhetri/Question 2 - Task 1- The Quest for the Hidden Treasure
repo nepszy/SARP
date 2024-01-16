@@ -1,3 +1,18 @@
+import time 
+current_time = int(time.time()) 
+generated_number = (current_time % 100) + 50 
+if generated_number % 2==0: 
+    generated_number +=10 
+
+print (generated_number)
+
+....................output...............
+95
+................./output..................
+
+
+
+
 from PIL import Image
 
 def process_image(input_image_path, output_image_path, n):
@@ -30,10 +45,15 @@ def process_image(input_image_path, output_image_path, n):
     return red_pixel_sum
 
 # Example usage
-generated_number = 42 
+generated_number = 95 
 input_image_path = 'C:\Users\elixi\Desktop\Assignment 2\chapter1'
 output_image_path = 'C:\Users\elixi\Desktop\Assignment 2\chapter1out.png'
 red_pixel_sum = process_image(input_image_path, output_image_path, generated_number)
 
 # Display the sum of red pixel values
 print(f"Sum of red pixel values in the new image: {red_pixel_sum}")
+
+
+....................output...............
+Sum of red pixel values in the new image: 147893719
+................./output..................
