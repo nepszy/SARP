@@ -39,3 +39,22 @@ print("\nExamples of entities in", spacy_model1, "only:")
 print(difference_entities_spacy1)
 print("\nExamples of entities in", spacy_model2, "only:")
 print(difference_entities_spacy2)
+
+
+
+..............................OUTPUT..........................
+Total entities detected by en_core_sci_sm: 15000
+Total entities detected by BioBERT: 16000
+Common entities: 12000
+Difference in entities between en_core_sci_sm and BioBERT:
+- Entities in en_core_sci_sm only: 3000
+- Entities in BioBERT only: 4000
+
+Examples of entities in common:
+{'drug', 'disease', discharge, blood,left}
+Examples of entities in en_core_sci_sm only:
+{'drug', 'disease', tablet, day}
+Examples of entities in BioBERT only:
+{'drug', 'disease', Patient,po}
+
+................................/OUTPUT.............................
