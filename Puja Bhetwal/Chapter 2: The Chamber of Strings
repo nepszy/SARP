@@ -24,3 +24,14 @@ print(f"Even Numbers: {even_nums}")
 print(f"Even Numbers ASCII Code Decimal Values: {even_nums_ascii}")
 print(f"Upper-case Letters: {upper_case_letters}")
 print(f"Upper-case Letters ASCII Code Decimal Values: {upper_case_letters_ascii}")
+
+
+.....................OUTPUT.............................
+enter the string: hiHHIHbhohoi6786876988  
+Number String: 6786876988
+Letter String: hiHHIHbhohoi
+Even Numbers: [6, 8, 6, 8, 6, 8, 8]
+Even Numbers ASCII Code Decimal Values: [6, 8, 6, 8, 6, 8, 8]
+Upper-case Letters: ['H', 'H', 'I', 'H']
+Upper-case Letters ASCII Code Decimal Values: [72, 72, 73, 72]
+........................./OUTPUT.............................
