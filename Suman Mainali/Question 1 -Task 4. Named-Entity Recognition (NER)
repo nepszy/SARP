@@ -1,0 +1,41 @@
+import spacy
+
+def extract_entities_spacy(text, model):
+    nlp = spacy.load(model)
+    doc = nlp(text)
+    entities = [ent.text for ent in doc.ents if ent.label_ in ['DISEASE', 'DRUG']]
+    return entities
+
+# Example usage
+file_path = 'C:/Users/elixi/Desktop/csvf/output.txt'
+with open(file_path, 'r', encoding='utf-8') as file:
+    text = file.read()
+
+# Using en_core_sci_sm or en_ner_bc5cdr_md
+spacy_model1 = 'en_core_sci_sm'  # Replace with 'en_ner_bc5cdr_md' if needed
+entities_spacy1 = extract_entities_spacy(text, spacy_model1)
+
+# Using BioBERT
+spacy_model2 = 'path/to/biobert/model'  # Replace with the actual path to BioBERT
+entities_spacy2 = extract_entities_spacy(text, spacy_model2)
+
+# Compare the differences
+common_entities = set(entities_spacy1) & set(entities_spacy2)
+difference_entities_spacy1 = set(entities_spacy1) - common_entities
+difference_entities_spacy2 = set(entities_spacy2) - common_entities
+
+# Display the results
+print(f"Total entities detected by {spacy_model1}: {len(entities_spacy1)}")
+print(f"Total entities detected by {spacy_model2}: {len(entities_spacy2)}")
+print(f"Common entities: {len(common_entities)}")
+print(f"Difference in entities between {spacy_model1} and {spacy_model2}:")
+print(f"- Entities in {spacy_model1} only: {len(difference_entities_spacy1)}")
+print(f"- Entities in {spacy_model2} only: {len(difference_entities_spacy2)}")
+
+# Print some examples of differences
+print("\nExamples of entities in common:")
+print(common_entities)
+print("\nExamples of entities in", spacy_model1, "only:")
+print(difference_entities_spacy1)
+print("\nExamples of entities in", spacy_model2, "only:")
+print(difference_entities_spacy2)
