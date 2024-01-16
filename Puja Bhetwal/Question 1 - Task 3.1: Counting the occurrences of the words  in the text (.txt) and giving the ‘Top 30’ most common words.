@@ -34,3 +34,38 @@ with open(output_csv_file, 'w', newline='', encoding='utf-8') as csv_file:
     csv_writer.writerows(top_30_words)
 
 print(f"Top 30 common words and their counts saved in '{output_csv_file}'.")
+
+
+
+.............................OUTPUT...................................
+Word	Count
+the	8001861
+and	7063104
+of	5908638
+to	5843547
+was	5629608
+with	4209894
+on	3750276
+a	3706728
+in	3188589
+for	2992440
+no	2507457
+is	2335374
+mg	2206872
+1	2179104
+patient	1950477
+he	1942293
+blood	1907349
+po	1729296
+she	1691016
+tablet	1681425
+at	1669338
+name	1578264
+or	1475136
+discharge	1461993
+as	1440000
+2	1398918
+daily	1319382
+his	1290204
+day	1240563
+left	1204806
