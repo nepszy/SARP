@@ -1,0 +1,33 @@
+from transformers import AutoTokenizer
+from collections import Counter
+import string
+
+def count_and_get_top_words(file_path, model_name, top_n=30):
+    # Load the tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+    # Read the text file
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
+
+    # Tokenize the text
+    tokens = tokenizer.tokenize(tokenizer.decode(tokenizer.encode(text)))
+
+    # Remove punctuation and convert to lowercase
+    tokens = [token.lower() for token in tokens if token not in string.punctuation]
+
+    # Count the occurrences of each token
+    token_counts = Counter(tokens)
+
+    # Get the top N words
+    top_words = token_counts.most_common(top_n)
+
+    # Display the results
+    print(f"Total unique tokens: {len(token_counts)}")
+    print("\nTop 30 words:")
+    for i, (word, count) in enumerate(top_words, start=1):
+        print(f"{i}. {word}: {count}")
+
+file_path = 'C:\Users\Mohan'
+model_name = 'bert-base-uncased'
+count_and_get_top_words(file_path, model_name)
