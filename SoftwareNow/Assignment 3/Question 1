@@ -1,0 +1,76 @@
+import tkinter as tk
+from tkinter import scrolledtext
+
+
+class NoteApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Object-Oriented Note App")
+        self.geometry("400x400")
+
+        self.notes = []  
+        # displaying notes
+        self.text_area = scrolledtext.ScrolledText(self, wrap=tk.WORD, width=40, height=10)
+        self.text_area.pack(pady=10)
+
+        # new note
+        add_button = tk.Button(self, text="Add Note", command=self.add_note)
+        add_button.pack(pady=5)
+
+        # print notes
+        print_button = tk.Button(self, text="Print Notes", command=self.print_notes)
+        print_button.pack(pady=5)
+
+    def add_note(self):
+        note_text = self.text_area.get("1.0", tk.END).strip()  # Get the text from the text area
+        if note_text:
+            note = Note(note_text)
+            self.notes.append(note)
+            print(f"Note added: {note}")
+            self.clear_text_area()
+
+    def print_notes(self):
+        print("\nAll Notes:")
+        for note in self.notes:
+            print(note)
+
+    def clear_text_area(self):
+        self.text_area.delete("1.0", tk.END)  # Clear the text 
+
+#individual notes
+class Note:
+    def __init__(self, text):
+        self.text = text
+
+    def __str__(self):
+        return f"Note: {self.text}"
+
+
+class PersonalNoteApp(NoteApp):
+    def __init__(self):
+        super().__init__()
+
+        #add personal note
+        add_personal_button = tk.Button(self, text="Add Personal Note", command=self.add_personal_note)
+        add_personal_button.pack(pady=5)
+
+    def add_personal_note(self):
+        note_text = self.text_area.get("1.0", tk.END).strip()
+        if note_text:
+            personal_note = PersonalNote(note_text)
+            self.notes.append(personal_note)
+            print(f"Personal note added: {personal_note}")
+            self.clear_text_area()
+
+# personal note
+class PersonalNote(Note):
+    def __init__(self, text):
+        super().__init__(text)
+        self.category = "Personal"
+
+    def __str__(self):
+        return f"Personal Note: {self.text}, Category: {self.category}"
+
+if __name__ == "__main__":
+    app = PersonalNoteApp()
+    app.mainloop()
